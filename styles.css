@@ -1,3 +1,8 @@
+/* Override Skeleton buttons */
+.button, button, input[type=button], input[type=reset], input[type=submit] {
+  padding: 0 15px;
+}
+
 body {
   background: #eeeeee;
   font-family: sans-serif;
