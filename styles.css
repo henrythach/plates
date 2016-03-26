@@ -1,11 +1,10 @@
 /* Override Skeleton buttons */
 .button, button, input[type=button], input[type=reset], input[type=submit] {
-  padding: 0 15px;
+  padding: 0 7%;
 }
 
 body {
   background: #eeeeee;
-  font-family: sans-serif;
   text-align: center;
 }
 
@@ -16,6 +15,7 @@ body {
 .plate-container {
   list-style-type: none;
   padding: 0;
+  margin-top: 1rem;
 }
 
 .plate {

@@ -24,14 +24,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1 id="targetWeightSpan"></h1>
-  <div id="header">
-    <button class="stepper decrement" data-step="-90">&minus;90</button>
-    <button class="stepper decrement" data-step="-5">&minus;5</button>
-    <button class="stepper increment" data-step="+5">&plus;5</button>
-    <button class="stepper increment" data-step="+90">&plus;90</button>
-  </div>
-  <br>
+  <h1><span id="targetWeightSpan"></span> lbs</h1>
+  <button class="stepper" data-step="-90"></button>
+  <button class="stepper" data-step="-5"></button>
+  <button class="stepper" data-step="+5"></button>
+  <button class="stepper" data-step="+90"></button>
+  <h4 id="minimumNote">You'll need the barbell!</h4>
   <ul id="stackOfWeights" class="plate-container"></ul>
   <script src="fastclick.min.js"></script>
   <script src="plates.js"></script>

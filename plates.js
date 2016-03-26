@@ -28,6 +28,8 @@
 
   var stackOfWeights = document.getElementById('stackOfWeights');
   var targetWeightSpan = document.getElementById('targetWeightSpan');
+  var minimumNote = document.getElementById('minimumNote');
+  minimumNote.style.display = 'none';
 
   function clearChildrenFrom(element) {
     while (element.firstChild) {
@@ -49,8 +51,11 @@
   }
 
   function createPlatesHtml(weight) {
-    if (isNaN(weight) || weight < 45) {
+    if (isNaN(weight) || weight <= 45) {
       weight = 45;
+      minimumNote.style.display = 'block';
+    } else {
+      minimumNote.style.display = 'none';
     }
 
     clearChildrenFrom(stackOfWeights);
@@ -98,6 +103,7 @@
   for (var i = 0; i < steppers.length; i++) {
     var stepper = steppers[i];
     stepper.onclick = incrementByButton;
+    stepper.innerHTML = stepper.dataset.step;
   }
 
   if (!localStorage.getItem('targetWeight')) {
