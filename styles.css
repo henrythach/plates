@@ -4,19 +4,6 @@ body {
   text-align: center;
 }
 
-h1 {
-  font-size: 16pt;
-}
-
-button {
-  padding: 10px;
-}
-
-.target-weight-input {
-  padding: 5px;
-  font-size: 20pt;
-}
-
 .target-weight-slider {
   width: 80%;
 }
@@ -42,8 +29,4 @@ button {
   background: -webkit-linear-gradient(top,  #666666 0%,#444444 11%,#0f0f0f 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  #666666 0%,#444444 11%,#0f0f0f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#0f0f0f',GradientType=0 ); /* IE6-9 */
-}
-
-.end-of-barbell {
-  width: 20px;
 }
