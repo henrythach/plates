@@ -100,4 +100,8 @@
     createPlatesHtml(localStorage.targetWeight);
   }
 
+  // load fastclick
+  window.addEventListener('load', function() {
+    new FastClick(document.body);
+  }, false);
 })();
