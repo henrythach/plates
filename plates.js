@@ -48,7 +48,7 @@
     var li = document.createElement('li');
     li.className = 'plate';
     li.innerHTML = weight;
-    li.style = 'width: ' + getPlateWidthInPercentage(weight) + '%';
+    li.style.width = getPlateWidthInPercentage(weight) + '%';
     return li;
   }
 
