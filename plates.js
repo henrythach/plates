@@ -2,7 +2,7 @@
   'use strict';
 
   var BARBELL_WEIGHT = 45;
-  var MAX_WEIGHT = 495;
+  var MAX_WEIGHT = 315;
   var PLATES = [45, 35, 25, 10, 5, 2.5];
 
   function calculate(weight) {
