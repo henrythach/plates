@@ -8,6 +8,10 @@ body {
   text-align: center;
 }
 
+h1, #minimumNote {
+  margin: 3rem 0;
+}
+
 .target-weight-slider {
   width: 80%;
 }
