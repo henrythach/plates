@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Plate Math</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Plate Math</h1>
+  <div id="header">
+    <button id="decrementButton" style="visibility: hidden">&minus;</button>
+    <input id="targetWeightInput"
+           class="target-weight-input"
+           max="495"
+           min="45"
+           step="5"
+           type="number"
+           value="45">
+    <span id="units">lbs</span>
+    <button id="incrementButton">&plus;</button>
+  </div>
+  <br>
+  <input id="targetWeightRange"
+         class="target-weight-slider"
+         max="495"
+         min="45"
+         step="5"
+         type="range"
+         value="45" >
+  
+  <ul id="stackOfWeights" class="plate-container"></ul>
+  <script src="plates.js"></script>
+</body>
+</html>
