@@ -27,11 +27,7 @@
   }
 
   var stackOfWeights = document.getElementById('stackOfWeights');
-  var incrementButton = document.getElementById('incrementButton');
-  var decrementButton = document.getElementById('decrementButton');
-  var targetWeightInput = document.getElementById('targetWeightInput');
-  var targetWeight = document.getElementById('targetWeightRange');
-  var targetWeightInput = document.getElementById('targetWeightInput');
+  var targetWeightSpan = document.getElementById('targetWeightSpan');
 
   function clearChildrenFrom(element) {
     while (element.firstChild) {
@@ -65,40 +61,51 @@
       stackOfWeights.appendChild(plateHtml);
     }
 
-    decrementButton.style.visibility = (weight <= 45) ? 'hidden' : 'visible';
-    incrementButton.style.visibility = (weight >= MAX_WEIGHT) ? 'hidden' : 'visible';
+    targetWeightSpan.innerHTML = weight;
   }
 
   function setTargetWeight(weight) {
     if (isNaN(weight) || weight < 45) {
       weight = 45;
     }
-    targetWeightRange.valueAsNumber = weight;
-    targetWeightInput.valueAsNumber = weight;
-    localStorage.targetWeight = weight;
+    localStorage.setItem('targetWeight', weight);
   }
 
   function roundToNearestFive(number) {
     return Math.ceil(number / 5.0) * 5;
   }
 
-  targetWeightRange.oninput = targetWeightInput.onchange = function (e) {
-    var theWeight = roundToNearestFive(e.target.valueAsNumber);
-    setTargetWeight(theWeight);
-    createPlatesHtml(theWeight);
-  };
-
-  incrementButton.onclick = decrementButton.onclick = function (e) {
-    var theWeight = targetWeightInput.valueAsNumber;
-    theWeight += (e.target === incrementButton) ? 5 : -5;
-    setTargetWeight(theWeight);
-    createPlatesHtml(theWeight);
-  };
-
-  if (localStorage.targetWeight) {
-    setTargetWeight(localStorage.targetWeight);
-    createPlatesHtml(localStorage.targetWeight);
+  function getCurrentWeight() {
+    var weightAsString = localStorage.getItem('targetWeight');
+    return (weightAsString && parseInt(weightAsString)) || 45;
   }
+
+  function getStepValue(domElement) {
+    var step = domElement.dataset.step;
+    var operator = step[0];
+    var value = parseInt(step.substring(1));
+    return value * (operator === '+' ? 1 : -1);
+  }
+
+  function incrementByButton(event) {
+    var theWeight = getCurrentWeight();
+    theWeight += getStepValue(event.target);
+    setTargetWeight(theWeight);
+    createPlatesHtml(theWeight);
+  }
+
+  var steppers = document.getElementsByClassName('stepper');
+  for (var i = 0; i < steppers.length; i++) {
+    var stepper = steppers[i];
+    stepper.onclick = incrementByButton;
+  }
+
+  if (!localStorage.getItem('targetWeight')) {
+    setTargetWeight(45);
+  }
+  var currentWeight = getCurrentWeight();
+  setTargetWeight(currentWeight);
+  createPlatesHtml(currentWeight);
 
   // load fastclick
   window.addEventListener('load', function() {

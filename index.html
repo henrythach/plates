@@ -24,26 +24,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Plate Math</h1>
+  <h1 id="targetWeightSpan"></h1>
   <div id="header">
-    <button id="decrementButton" style="visibility: hidden">&minus;5</button>
-    <input id="targetWeightInput"
-           class="target-weight-input"
-           max="315"
-           min="45"
-           step="5"
-           type="number"
-           value="45">
-    <button id="incrementButton">&plus;5</button>
+    <button class="stepper decrement" data-step="-90">&minus;90</button>
+    <button class="stepper decrement" data-step="-5">&minus;5</button>
+    <button class="stepper increment" data-step="+5">&plus;5</button>
+    <button class="stepper increment" data-step="+90">&plus;90</button>
   </div>
   <br>
-  <input id="targetWeightRange"
-         class="target-weight-slider"
-         max="315"
-         min="45"
-         step="5"
-         type="range"
-         value="45" >
   <ul id="stackOfWeights" class="plate-container"></ul>
   <script src="fastclick.min.js"></script>
   <script src="plates.js"></script>
