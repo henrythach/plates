@@ -16,6 +16,17 @@ h1, #minimumNote {
   margin: 3rem 0;
 }
 
+#downloadAppMessage {
+  margin-top: 10rem;
+  padding: 0 10px;
+  font-size: 10pt;
+}
+
+.share-icon {
+  width: 12px;
+  padding: 0 3px;
+}
+
 .target-weight-slider {
   width: 80%;
 }

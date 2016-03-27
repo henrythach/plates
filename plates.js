@@ -116,4 +116,15 @@
   window.addEventListener('load', function() {
     new FastClick(document.body);
   }, false);
+
+  // decide whether to show download app message or nah
+  var downloadAppMessage = document.getElementById('downloadAppMessage');
+  if (window.navigator.userAgent.indexOf('iPhone') != -1) {
+    downloadAppMessage.style.display = 'block';
+    if (window.navigator.standalone === true) {
+      downloadAppMessage.style.display = 'none';
+    }
+  } else {
+    downloadAppMessage.style.display = 'none';
+  }
 })();
