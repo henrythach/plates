@@ -5,7 +5,7 @@
   var PLATES = [45, 35, 25, 10, 5, 2.5];
 
   function calculate(weight) {
-    if (weight < BARBELL_WEIGHT || weight % (2.5 * 2) !== 0) {
+    if (weight < BARBELL_WEIGHT || weight % 5 !== 0) {
       return;
     }
 
