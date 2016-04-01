@@ -75,10 +75,6 @@
     localStorage.setItem('targetWeight', weight);
   }
 
-  function roundToNearestFive(number) {
-    return Math.ceil(number / 5.0) * 5;
-  }
-
   function getCurrentWeight() {
     var weightAsString = localStorage.getItem('targetWeight');
     return (weightAsString && parseInt(weightAsString)) || 45;
