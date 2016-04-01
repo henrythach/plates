@@ -1,0 +1,22 @@
+{
+  "name": "plates",
+  "version": "1.0.0",
+  "description": "Mobile web app to calculate plates for a barbell.",
+  "main": "plates.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrythach/plates.git"
+  },
+  "author": "Henry Thach <thachhao@gmail.com> (http://henrythach.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henrythach/plates/issues"
+  },
+  "homepage": "https://github.com/henrythach/plates#readme",
+  "devDependencies": {
+    "expect": "^1.16.0"
+  }
+}
