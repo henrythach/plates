@@ -1,4 +1,5 @@
-(function () {
+/* global window, document, localStorage */
+(function (window, document, localStorage) {
   'use strict';
 
   var Plates = (function () {
@@ -96,21 +97,21 @@
     Plates.prototype.getCurrentWeight = function () {
       var weightAsString = localStorage.getItem('targetWeight');
       return (weightAsString && parseInt(weightAsString)) || 45;
-    }
+    };
 
     Plates.prototype.getStepValue = function (domElement) {
       var step = domElement.dataset.step;
       var operator = step[0];
       var value = parseInt(step.substring(1));
       return value * (operator === '+' ? 1 : -1);
-    }
+    };
 
     Plates.prototype.incrementByButton = function (event) {
       var theWeight = this.getCurrentWeight();
       theWeight += this.getStepValue(event.target);
       this.setTargetWeight(theWeight);
       this.createPlatesHtml(theWeight);
-    }
+    };
 
     return Plates;
   })();
@@ -127,12 +128,12 @@
 
     // load fastclick
     window.addEventListener('load', function() {
-      new FastClick(document.body);
+      new FastClick(document.body); // jshint ignore:line
     }, false);
 
     // decide whether to show download app message or nah
     var downloadAppMessage = document.getElementById('downloadAppMessage');
-    if (window.navigator.userAgent.indexOf('iPhone') != -1) {
+    if (window.navigator.userAgent.indexOf('iPhone') !== -1) {
       downloadAppMessage.style.display = 'block';
       if (window.navigator.standalone === true) {
         downloadAppMessage.style.display = 'none';
@@ -142,4 +143,6 @@
     }
   }
 
-})();
+})(typeof window !== 'undefined' ? window : global,
+   typeof document !== 'undefined' ? document : {},
+   typeof localStorage !== 'undefined' ? localStorage : null);
