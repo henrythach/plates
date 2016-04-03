@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/henrythach/plates#readme",
   "devDependencies": {
-    "expect": "^1.16.0"
+    "tape": "^4.5.1"
   }
 }
