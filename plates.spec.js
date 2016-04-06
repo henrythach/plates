@@ -40,3 +40,16 @@ test('calcuate plate math', function (t) {
 
   t.end();
 });
+
+test('getting plate width percentage', function (t) {
+  var plates = new Plates();
+
+  t.same(plates.getPlateWidthInPercentage(45),  100);
+  t.same(plates.getPlateWidthInPercentage(35),  90);
+  t.same(plates.getPlateWidthInPercentage(25),  80);
+  t.same(plates.getPlateWidthInPercentage(10),  70);
+  t.same(plates.getPlateWidthInPercentage(5),   60);
+  t.same(plates.getPlateWidthInPercentage(2.5), 50);
+
+  t.end();
+});
