@@ -112,9 +112,9 @@
   // load fastclick
   if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
+      FastClick.attach(document.body);
     }, false);
-}
+  }
 
   // decide whether to show download app message or nah
   var downloadAppMessage = document.getElementById('downloadAppMessage');
