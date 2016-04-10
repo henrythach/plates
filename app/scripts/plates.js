@@ -1,22 +1,24 @@
+/*global FastClick */
 (function () {
   'use strict';
 
-  var BARBELL_WEIGHT = 45;
-  var PLATES = [45, 35, 25, 10, 5, 2.5];
+  const BARBELL_WEIGHT = 45;
+  const PLATES = [45, 35, 25, 10, 5, 2.5];
 
   function calculate(weight) {
+    let results = [];
+
     if (weight < BARBELL_WEIGHT || weight % 5 !== 0) {
-      return;
+      return results;
     }
 
-    var results = [];
     weight -= BARBELL_WEIGHT;
     weight /= 2;
     while (weight > 0) {
-      for (var i = 0; i < PLATES.length; i++) {
-        if (weight >= PLATES[i]) {
-          weight -= PLATES[i];
-          results.push(PLATES[i]);
+      for (let plate of PLATES) {
+        if (weight >= plate) {
+          weight -= plate;
+          results.push(plate);
           break;
         }
       }
@@ -59,11 +61,10 @@
 
     clearChildrenFrom(stackOfWeights);
     var weights = calculate(weight);
-    for (var i = 0; i < weights.length; i++) {
-      var theWeight = weights[i];
+    weights.forEach((theWeight) => {
       var plateHtml = createPlateHtml(theWeight);
       stackOfWeights.appendChild(plateHtml);
-    }
+    });
 
     targetWeightSpan.innerHTML = weight;
   }
@@ -109,13 +110,15 @@
   createPlatesHtml(currentWeight);
 
   // load fastclick
-  window.addEventListener('load', function() {
-    new FastClick(document.body);
-  }, false);
+  if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
 
   // decide whether to show download app message or nah
   var downloadAppMessage = document.getElementById('downloadAppMessage');
-  if (window.navigator.userAgent.indexOf('iPhone') != -1) {
+  if (window.navigator.userAgent.indexOf('iPhone') !== -1) {
     downloadAppMessage.style.display = 'block';
     if (window.navigator.standalone === true) {
       downloadAppMessage.style.display = 'none';
