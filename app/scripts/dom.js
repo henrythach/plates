@@ -23,6 +23,13 @@ const app = app || {};
       li.innerHTML = weight;
       li.style.width = app.dom.getPlateWidthInPercentage(weight) + '%';
       return li;
+    },
+
+    insertPlatesToContainer(plates, container) {
+      plates.forEach((theWeight) => {
+        var plateHtml = app.dom.createPlateHtml(theWeight);
+        container.appendChild(plateHtml);
+      });
     }
   };
 })();

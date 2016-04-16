@@ -48,5 +48,15 @@
       assert.equal('50%', twoAndHalf.style.width);
       assert.equal('2.5', twoAndHalf.innerHTML);
     });
+
+    it('should insert plate html to container', () => {
+      const weights = [45, 35, 25, 10, 5, 2.5];
+      const weightPlates = weights.map(weight => dom.createPlateHtml(weight));
+      const container = document.createElement('ul');
+      dom.insertPlatesToContainer(weights, container);
+      weightPlates.forEach((weightPlate, i) =>
+        assert.isTrue(weightPlate.isEqualNode(container.children[i]))
+      );
+    });
   });
 })();
