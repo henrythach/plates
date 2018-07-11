@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const PlateComponent = styled.div`
-  background-color: #444444;
-  background: #222;
+  background: ${props => props.theme.plateBackgroundColor};
   border-radius: 3px;
   border: 0;
-  color: #ffffff;
+  color: ${props => props.theme.plateTextColor};
   font-family: sans-serif;
   margin: auto auto 3px;
   padding: 10px 0;
+  font-size: 18px;
 
   ${props => props.width && css`
     width: ${props.width}%

@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import './App.css';
+import { ThemeProvider } from 'styled-components'
 
 import PlateMath from './PlateMath'
 
@@ -12,11 +13,31 @@ import Plate from './Components/Plate'
 import PlatesContainer from './Components/PlatesContainer'
 import Stepper from './Components/Stepper'
 import Steppers from './Components/Steppers'
+import ThemeToggle from './Components/ThemeToggle'
+
+const lightTheme = {
+  background: '#fefefe',
+  currentWeightColor: '#222',
+  plateBackgroundColor: '#333',
+  plateTextColor: '#eee',
+  stepperBackgroundColor: '#eee',
+  stepperTextColor: '#222'
+}
+
+const darkTheme = {
+  background: '#1b201b',
+  currentWeightColor: '#fdff8c',
+  stepperBackgroundColor: '#feffc6',
+  stepperTextColor: '#1b201b',
+  plateBackgroundColor: '#ffea94',
+  plateTextColor: '#1b201b'
+}
 
 class App extends Component<any> {
   plateMath: PlateMath
   state: {
-    currentWeight: number
+    currentWeight: number,
+    theme: string
   }
 
   constructor (props: any) {
@@ -38,13 +59,25 @@ class App extends Component<any> {
     this.plateMath = new PlateMath(barbellWeight, listOfAvailablePlates)
 
     const currentWeight = parseInt(localStorage.getItem('currentWeight'), 10) || barbellWeight
+    const theme = localStorage.getItem('theme') || 'light'
     this.state = {
-      currentWeight
+      currentWeight,
+      theme
     }
   }
 
   getPlateWidthPercentage (weight: number) : number {
     return 100 - (this.plateMath.listOfAvailablePlates.indexOf(weight) * 5)
+  }
+
+  getTheme () {
+    return this.state.theme === 'light' ? lightTheme : darkTheme
+  }
+
+  onToggleTheme = () => {
+    const theme = this.state.theme === 'light' ? 'dark' : 'light'
+    this.setState({ theme })
+    localStorage.setItem('theme', theme)
   }
 
   onStepperClicked = (weight: number) => {
@@ -83,23 +116,29 @@ class App extends Component<any> {
 
   render() {
     return (
-      <AppContainer>
-        <CurrentWeight>
-          { this.state.currentWeight }
-        </CurrentWeight>
-        <Steppers>
-          { this.renderStepper(-this.plateMath.maximumPlateWeight * 2)}
-          { this.renderStepper(-this.plateMath.middlePlateWeight * 2)}
-          { this.renderStepper(-this.plateMath.minimumPlateWeight * 2)}
-          &nbsp;&nbsp;
-          { this.renderStepper(this.plateMath.minimumPlateWeight * 2)}
-          { this.renderStepper(this.plateMath.middlePlateWeight * 2)}
-          { this.renderStepper(this.plateMath.maximumPlateWeight * 2)}
-        </Steppers>
-        <PlatesContainer>
-          { this.renderPlates() }
-        </PlatesContainer>
-      </AppContainer>
+      <ThemeProvider theme={this.getTheme()}>
+        <AppContainer>
+          <ThemeToggle
+            onClick={this.onToggleTheme}
+            theme={this.state.theme}
+          />
+          <CurrentWeight>
+            { this.state.currentWeight }
+          </CurrentWeight>
+          <Steppers>
+            { this.renderStepper(-this.plateMath.maximumPlateWeight * 2)}
+            { this.renderStepper(-this.plateMath.middlePlateWeight * 2)}
+            { this.renderStepper(-this.plateMath.minimumPlateWeight * 2)}
+            &nbsp;&nbsp;
+            { this.renderStepper(this.plateMath.minimumPlateWeight * 2)}
+            { this.renderStepper(this.plateMath.middlePlateWeight * 2)}
+            { this.renderStepper(this.plateMath.maximumPlateWeight * 2)}
+          </Steppers>
+          <PlatesContainer>
+            { this.renderPlates() }
+          </PlatesContainer>
+        </AppContainer>
+      </ThemeProvider>
     );
   }
 }

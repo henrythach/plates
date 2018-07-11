@@ -1,32 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Stepper = styled.button`
-  background-color: ${props => props.theme.stepperBackgroundColor};
+const Button = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  background-color: transparent;
   border-radius: 3px;
   border: 0;
-  color: ${props => props.theme.stepperTextColor};
+  color: #222;
   cursor: pointer;
   display: inline-block;
-  font-size: 12px;
+  font-size: 22px;
   font-weight: bold;
-  height: 38px;
   margin: auto 3px;
   padding: 0 10px;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
+  touch-action: manipulation;
   width: 46px;
   white-space: nowrap;
 `
 
 export default (props) => (
-  <Stepper
-    onClick={() => props.onClick(props.amount)}
-    disabled={props.disabled}
+  <Button
+    onClick={props.onClick}
   >
-    { props.amount < 0 ? '-' : '+' }
-    { Math.abs(props.amount) }
-  </Stepper>
+    { props.theme === 'light' ? '🌚' : '🌝' }
+  </Button>
 )
-
