@@ -17,6 +17,7 @@ const Stepper = styled.button`
   text-decoration: none;
   text-transform: uppercase;
   touch-action: manipulation;
+  width: 46px;
   white-space: nowrap;
 `
 

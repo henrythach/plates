@@ -2,29 +2,16 @@
 
 import React, { Component } from 'react';
 import './App.css';
+
 import PlateMath from './PlateMath'
+
+import AppContainer from './Components/AppContainer'
+import Barbell from './Components/Barbell'
+import CurrentWeight from './Components/CurrentWeight'
 import Plate from './Components/Plate'
+import PlatesContainer from './Components/PlatesContainer'
 import Stepper from './Components/Stepper'
-
-import styled from 'styled-components'
-
-const AppContainer = styled.div`
-  text-align: center;
-  padding: 20px;
-`
-
-const CurrentWeight = styled.h2`
-  font-size: 32px;
-  margin: 10px auto;
-`
-
-const Plates = styled.div`
-  margin-top: 10px;
-`
-
-const Steppers = styled.div`
-  padding: 10px 0;
-`
+import Steppers from './Components/Steppers'
 
 class App extends Component<any> {
   plateMath: PlateMath
@@ -35,7 +22,8 @@ class App extends Component<any> {
   constructor (props: any) {
     super(props)
 
-    this.plateMath = new PlateMath(45, [
+    const barbellWeight = 45
+    const listOfAvailablePlates = [
       45,
       35,
       25,
@@ -46,9 +34,12 @@ class App extends Component<any> {
       0.75,
       0.5,
       0.25
-    ])
+    ]
+    this.plateMath = new PlateMath(barbellWeight, listOfAvailablePlates)
+
+    const currentWeight = parseInt(localStorage.getItem('currentWeight'), 10) || barbellWeight
     this.state = {
-      currentWeight: 225
+      currentWeight
     }
   }
 
@@ -57,10 +48,10 @@ class App extends Component<any> {
   }
 
   onStepperClicked = (weight: number) => {
-    this.setState({
-      currentWeight: Math.max(this.state.currentWeight + weight,
-                              this.plateMath.barbellWeight)
-    })
+    const currentWeight = Math.max(this.state.currentWeight + weight,
+                                   this.plateMath.barbellWeight)
+    this.setState({ currentWeight })
+    localStorage.setItem('currentWeight', '' + currentWeight)
   }
 
   renderStepper (amount: number) {
@@ -78,7 +69,7 @@ class App extends Component<any> {
     const plates = this.plateMath.calculate(this.state.currentWeight)
 
     if (plates.length === 0) {
-      return <p>Just the barbell</p>
+      return <Barbell />
     }
 
     return plates.map((weight, index) => (
@@ -105,9 +96,9 @@ class App extends Component<any> {
           { this.renderStepper(this.plateMath.middlePlateWeight * 2)}
           { this.renderStepper(this.plateMath.maximumPlateWeight * 2)}
         </Steppers>
-        <Plates>
+        <PlatesContainer>
           { this.renderPlates() }
-        </Plates>
+        </PlatesContainer>
       </AppContainer>
     );
   }
