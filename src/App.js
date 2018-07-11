@@ -17,6 +17,7 @@ import ThemeToggle from './Components/ThemeToggle'
 
 const lightTheme = {
   background: '#fefefe',
+  barbellTextColor: '#222',
   currentWeightColor: '#222',
   plateBackgroundColor: '#333',
   plateTextColor: '#eee',
@@ -26,6 +27,7 @@ const lightTheme = {
 
 const darkTheme = {
   background: '#1b201b',
+  barbellTextColor: '#ddd',
   currentWeightColor: '#fdff8c',
   stepperBackgroundColor: '#feffc6',
   stepperTextColor: '#1b201b',
