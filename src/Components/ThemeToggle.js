@@ -1,5 +1,8 @@
+// @flow
+
 import React from 'react'
 import styled from 'styled-components'
+import { AvaiableTheme } from '../Themes'
 
 const Button = styled.button`
   position: absolute;
@@ -24,7 +27,12 @@ const Button = styled.button`
   white-space: nowrap;
 `
 
-export default (props) => (
+type Props = {
+  onClick: Function,
+  theme: AvaiableTheme
+}
+
+export default (props: Props) => (
   <Button
     onClick={props.onClick}
   >

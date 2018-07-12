@@ -5,6 +5,7 @@ import './App.css';
 import { ThemeProvider } from 'styled-components'
 
 import PlateMath from './PlateMath'
+import Themes from './Themes'
 
 import AppContainer from './Components/AppContainer'
 import Barbell from './Components/Barbell'
@@ -15,31 +16,16 @@ import Stepper from './Components/Stepper'
 import Steppers from './Components/Steppers'
 import ThemeToggle from './Components/ThemeToggle'
 
-const lightTheme = {
-  background: '#fefefe',
-  barbellTextColor: '#222',
-  currentWeightColor: '#222',
-  plateBackgroundColor: '#333',
-  plateTextColor: '#eee',
-  stepperBackgroundColor: '#eee',
-  stepperTextColor: '#222'
+type Props = {}
+
+type State = {
+  currentWeight: number
 }
 
-const darkTheme = {
-  background: '#1b201b',
-  barbellTextColor: '#ddd',
-  currentWeightColor: '#fdff8c',
-  stepperBackgroundColor: '#feffc6',
-  stepperTextColor: '#1b201b',
-  plateBackgroundColor: '#ffea94',
-  plateTextColor: '#1b201b'
-}
-
-class App extends Component<any> {
+class App extends Component<Props, State> {
   plateMath: PlateMath
   state: {
-    currentWeight: number,
-    theme: string
+    currentWeight: number
   }
 
   constructor (props: any) {
@@ -61,25 +47,16 @@ class App extends Component<any> {
     this.plateMath = new PlateMath(barbellWeight, listOfAvailablePlates)
 
     const currentWeight = parseInt(localStorage.getItem('currentWeight'), 10) || barbellWeight
-    const theme = localStorage.getItem('theme') || 'light'
-    this.state = {
-      currentWeight,
-      theme
-    }
+    this.state = { currentWeight }
   }
 
   getPlateWidthPercentage (weight: number) : number {
     return 100 - (this.plateMath.listOfAvailablePlates.indexOf(weight) * 5)
   }
 
-  getTheme () {
-    return this.state.theme === 'light' ? lightTheme : darkTheme
-  }
-
-  onToggleTheme = () => {
-    const theme = this.state.theme === 'light' ? 'dark' : 'light'
-    this.setState({ theme })
-    localStorage.setItem('theme', theme)
+  toggleTheme = () => {
+    Themes.toggleTheme()
+    this.setState({})
   }
 
   onStepperClicked = (weight: number) => {
@@ -118,11 +95,11 @@ class App extends Component<any> {
 
   render() {
     return (
-      <ThemeProvider theme={this.getTheme()}>
+      <ThemeProvider theme={Themes.getTheme()}>
         <AppContainer>
           <ThemeToggle
-            onClick={this.onToggleTheme}
-            theme={this.state.theme}
+            onClick={this.toggleTheme}
+            theme={Themes.getThemeName()}
           />
           <CurrentWeight>
             { this.state.currentWeight }

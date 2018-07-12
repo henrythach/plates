@@ -5,6 +5,7 @@ const Stepper = styled.button`
   background-color: ${props => props.theme.stepperBackgroundColor};
   border-radius: 3px;
   border: 0;
+  box-shadow: 1px 2px 0px ${props => props.theme.stepperBoxShadowColor};
   color: ${props => props.theme.stepperTextColor};
   cursor: pointer;
   display: inline-block;

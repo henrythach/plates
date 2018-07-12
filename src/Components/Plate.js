@@ -6,9 +6,10 @@ const PlateComponent = styled.div`
   background: ${props => props.theme.plateBackgroundColor};
   border-radius: 3px;
   border: 0;
+  box-shadow: 1px 2px 0 ${props => props.theme.plateBoxShadowColor};
   color: ${props => props.theme.plateTextColor};
   font-family: sans-serif;
-  margin: auto auto 3px;
+  margin: auto auto 7px;
   padding: 10px 0;
   font-size: 18px;
 
