@@ -56,7 +56,7 @@ class Themes {
 
   findTheme (themeName: ?string): AvailableTheme {
     const index = AVAILABLE_THEMES.indexOf(themeName)
-    return index >= -1 ? AVAILABLE_THEMES[index] : 'light'
+    return index > -1 ? AVAILABLE_THEMES[index] : 'light'
   }
 
   setTheme (themeName: AvailableTheme = 'light') : void {
