@@ -7,11 +7,14 @@ import { ThemeProvider } from 'styled-components'
 import PlateMath from './PlateMath'
 import Themes from './Themes'
 
+import Settings from './Settings'
+
 import AppContainer from './Components/AppContainer'
 import Barbell from './Components/Barbell'
 import CurrentWeight from './Components/CurrentWeight'
 import Plate from './Components/Plate'
 import PlatesContainer from './Components/PlatesContainer'
+import SettingsToggle from './Components/SettingsToggle'
 import Stepper from './Components/Stepper'
 import Steppers from './Components/Steppers'
 import ThemeToggle from './Components/ThemeToggle'
@@ -19,35 +22,23 @@ import ThemeToggle from './Components/ThemeToggle'
 type Props = {}
 
 type State = {
-  currentWeight: number
+  currentWeight: number,
+  showSettings: boolean
 }
 
 class App extends Component<Props, State> {
   plateMath: PlateMath
-  state: {
-    currentWeight: number
-  }
 
   constructor (props: any) {
     super(props)
 
-    const barbellWeight = 45
-    const listOfAvailablePlates = [
-      45,
-      35,
-      25,
-      10,
-      5,
-      2.5,
-      1,
-      0.75,
-      0.5,
-      0.25
-    ]
-    this.plateMath = new PlateMath(barbellWeight, listOfAvailablePlates)
+    this.plateMath = new PlateMath()
 
-    const currentWeight = parseInt(localStorage.getItem('currentWeight'), 10) || barbellWeight
-    this.state = { currentWeight }
+    const currentWeight = parseInt(localStorage.getItem('currentWeight'), 10) || this.plateMath.barbellWeight
+    this.state = {
+      currentWeight,
+      showSettings: true
+    }
   }
 
   getPlateWidthPercentage (weight: number) : number {
@@ -101,6 +92,13 @@ class App extends Component<Props, State> {
             onClick={this.toggleTheme}
             theme={Themes.getThemeName()}
           />
+          {/* <Settings
+            show={this.state.showSettings}
+          />
+          <SettingsToggle
+            onClick={() => this.setState({ showSettings: !this.state.showSettings })}
+            show={this.state.showSettings}
+          /> */}
           <CurrentWeight>
             { this.state.currentWeight }
           </CurrentWeight>

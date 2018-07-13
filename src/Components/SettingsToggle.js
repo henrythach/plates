@@ -2,12 +2,12 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { type AvailableTheme } from '../Themes'
+import { FaCog, FaClose } from 'react-icons/lib/fa'
 
 const Button = styled.button`
   position: absolute;
   top: 10px;
-  right: 5px;
+  left: 5px;
 
   background-color: transparent;
   border-radius: 3px;
@@ -29,13 +29,13 @@ const Button = styled.button`
 
 type Props = {
   onClick: Function,
-  theme: AvailableTheme
+  show: boolean
 }
 
 export default (props: Props) => (
   <Button
     onClick={props.onClick}
   >
-    { props.theme === 'light' ? '🌚' : '🌝' }
+    { props.show ? <FaClose /> : <FaCog /> }
   </Button>
 )

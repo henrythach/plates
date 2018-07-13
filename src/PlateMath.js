@@ -1,15 +1,32 @@
 // @flow
 
+export type AvailableBarbell = 45
+
+export type AvailablePlate = 55
+                           | 45
+                           | 35
+                           | 25
+                           | 10
+                           | 5
+                           | 2.5
+                           | 1
+                           | 0.75
+                           | 0.5
+                           | 0.25
+
+export const AVAILABLE_PLATES : AvailablePlate[] = [
+  55, 45, 35, 25, 10, 5, 2.5, 1, 0.75, 0.5, 0.25
+]
 export const DEFAULT_BARBELL_WEIGHT = 45
-export const DEFAULT_PLATES = [45, 35, 25, 10, 5, 2.5]
+export const DEFAULT_PLATES : AvailablePlate[] = [45, 35, 25, 10, 5, 2.5, 1, 0.75, 0.5, 0.25]
 
 class PlateMath {
-  barbellWeight: number
-  listOfAvailablePlates: number[]
+  barbellWeight: AvailableBarbell
+  listOfAvailablePlates: AvailablePlate[]
 
   constructor (
-    barbellWeight: number = DEFAULT_BARBELL_WEIGHT,
-    listOfAvailablePlates: number[] = DEFAULT_PLATES
+    barbellWeight: AvailableBarbell = DEFAULT_BARBELL_WEIGHT,
+    listOfAvailablePlates: AvailablePlate[] = DEFAULT_PLATES
   ) {
     this.barbellWeight = barbellWeight
     this.listOfAvailablePlates = listOfAvailablePlates.sort((a, b) => b - a)

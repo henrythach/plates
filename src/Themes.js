@@ -2,6 +2,7 @@
 
 type ThemeType = {
   background: string,
+  backgroundSettings: string,
   barbellTextColor: string,
   currentWeightColor: string,
   plateBackgroundColor: string,
@@ -24,7 +25,8 @@ const AVAILABLE_THEMES = [
 
 const THEME_MAP: { [string]: ThemeType } = {
   [DEFAULT_THEME]: {
-    background: '#fefefe',
+    background: 'rgba(254, 254, 254, 1)',
+    backgroundSettings: 'rgba(254, 254, 254, 0.90)',
     barbellTextColor: '#222',
     currentWeightColor: '#222',
     plateBackgroundColor: '#333',
@@ -35,7 +37,8 @@ const THEME_MAP: { [string]: ThemeType } = {
     stepperTextColor: '#222'
   },
   [DARK_THEME]: {
-    background: '#1b201b',
+    background: 'rgba(27, 32, 27, 1)',
+    backgroundSettings: 'rgba(27, 32, 27, 0.90)',
     barbellTextColor: '#ddd',
     currentWeightColor: '#fdff8c',
     plateBackgroundColor: '#ffea94',
@@ -68,7 +71,7 @@ class Themes {
     this.setTheme(this.themeName === 'light' ? 'dark' : 'light')
   }
 
-  getTheme () : ThemeType {
+  getTheme () : Object {
     return THEME_MAP[this.themeName]
   }
 
