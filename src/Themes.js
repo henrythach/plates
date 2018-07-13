@@ -15,7 +15,7 @@ type ThemeType = {
 const DEFAULT_THEME = 'light'
 const DARK_THEME = 'dark'
 
-export type AvaiableTheme = 'light' | 'dark'
+export type AvailableTheme = 'light' | 'dark'
 
 const AVAILABLE_THEMES = [
   'light',
@@ -48,23 +48,23 @@ const THEME_MAP: { [string]: ThemeType } = {
 }
 
 class Themes {
-  themeName: AvaiableTheme
+  themeName: AvailableTheme
 
   constructor () {
     this.themeName = this.findTheme(localStorage.getItem('theme'))
   }
 
-  findTheme (themeName: ?string): AvaiableTheme {
+  findTheme (themeName: ?string): AvailableTheme {
     const index = AVAILABLE_THEMES.indexOf(themeName)
     return index >= -1 ? AVAILABLE_THEMES[index] : 'light'
   }
 
-  setTheme (themeName: AvaiableTheme = 'light') {
+  setTheme (themeName: AvailableTheme = 'light') : void {
     this.themeName = themeName
     localStorage.setItem('theme', themeName)
   }
 
-  toggleTheme () {
+  toggleTheme () : void {
     this.setTheme(this.themeName === 'light' ? 'dark' : 'light')
   }
 
@@ -72,7 +72,7 @@ class Themes {
     return THEME_MAP[this.themeName]
   }
 
-  getThemeName () {
+  getThemeName () : AvailableTheme {
     return this.themeName
   }
 }

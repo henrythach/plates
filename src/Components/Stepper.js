@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import styled from 'styled-components'
 
@@ -21,7 +23,13 @@ const Stepper = styled.button`
   white-space: nowrap;
 `
 
-export default (props) => (
+type Props = {
+  onClick: Function,
+  amount: number,
+  disabled: bool
+}
+
+export default (props: Props) => (
   <Stepper
     onClick={() => props.onClick(props.amount)}
     disabled={props.disabled}

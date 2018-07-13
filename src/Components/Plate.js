@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
@@ -19,7 +21,12 @@ const PlateComponent = styled.div`
   `}
 `
 
-const Plate = (props) => (
+type Props = {
+  weight: number,
+  width: number
+}
+
+const Plate = (props: Props) => (
   <PlateComponent
     weight={props.weight}
     width={props.width}

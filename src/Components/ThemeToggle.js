@@ -2,7 +2,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
-import { AvaiableTheme } from '../Themes'
+import { type AvailableTheme } from '../Themes'
 
 const Button = styled.button`
   position: absolute;
@@ -29,7 +29,7 @@ const Button = styled.button`
 
 type Props = {
   onClick: Function,
-  theme: AvaiableTheme
+  theme: AvailableTheme
 }
 
 export default (props: Props) => (

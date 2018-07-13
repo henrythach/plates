@@ -1,7 +1,7 @@
 // @flow
 
-const DEFAULT_BARBELL_WEIGHT = 45
-const DEFAULT_PLATES = [45, 35, 25, 10, 5, 2.5]
+export const DEFAULT_BARBELL_WEIGHT = 45
+export const DEFAULT_PLATES = [45, 35, 25, 10, 5, 2.5]
 
 class PlateMath {
   barbellWeight: number
