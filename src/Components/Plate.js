@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const PlateComponent = styled.div`
+  top: 0;
   background: ${props => props.theme.plateBackgroundColor};
   border-radius: 3px;
   border: 0;

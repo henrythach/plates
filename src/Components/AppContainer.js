@@ -3,6 +3,6 @@ import styled from 'styled-components'
 export default styled.div`
   background: ${props => props.theme.background};
   text-align: center;
-  padding: 20px;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 `
